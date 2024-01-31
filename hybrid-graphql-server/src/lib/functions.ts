@@ -30,7 +30,6 @@ const authenticate = async (req: Request): Promise<MyContext> => {
         token,
         process.env.JWT_SECRET as string,
       ) as UserFromToken;
-      // add token to user object so we can use it in resolvers
       user.token = token;
       return {user};
     } catch (error) {

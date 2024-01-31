@@ -9,6 +9,7 @@ type MediaItem {
   description: String
   created_at: String!
   tags: [Tag]
+  owner: User
 }
 
 type MediaResponse {
@@ -20,10 +21,11 @@ type Query {
   mediaItems: [MediaItem]
   mediaItem(media_id: ID!): MediaItem
   mediaItemsByTag(tag: String!): [MediaItem]
+  checkEmail(email: String!): Boolean
+  checkUsername(username: String!): Boolean
 }
 
 input MediaItemInput {
-  user_id: ID!
   filename: String!
   filesize: Int!
   media_type: String!
@@ -45,4 +47,5 @@ type Mutation {
   createMediaItem(input: MediaItemInput!): MediaItem
   addTagToMediaItem(input: AddTagToMediaItemInput!): MediaItem
   updateMediaItem(input: MediaItemUpdateInput!, media_id: ID!): MediaResponse
+  deleteMediaItem(media_id: ID!): Boolean
 }
